@@ -1,0 +1,2 @@
+A contract can state how much money a party must pay.
+Late payments may result in additional fees.
