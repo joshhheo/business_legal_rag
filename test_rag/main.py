@@ -1,4 +1,6 @@
 from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+
 
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
@@ -19,4 +21,11 @@ for file in files:
 
 embeddings = model.encode(all_chunks)
 
-print(embeddings)
+question = "How can a contract be terminated?"
+
+# encode expects 2D array
+question_embedding = model.encode([question])
+
+similarities = cosine_similarity(question_embedding, embeddings)
+
+print(similarities)
