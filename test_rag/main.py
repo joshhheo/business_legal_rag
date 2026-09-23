@@ -29,3 +29,15 @@ question_embedding = model.encode([question])
 similarities = cosine_similarity(question_embedding, embeddings)
 
 print(similarities)
+
+similarities = similarities[0]
+
+# arg sort is ascending by default
+# arg sort saves initial index positions of each value
+# index position represents chunk identity
+# 2 slices because reverse order before indexing
+sorted_similarities = similarities.argsort()[::-1][:2]
+
+for index in sorted_similarities:
+    print(all_chunks[index])
+
