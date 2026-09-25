@@ -1,0 +1,17 @@
+An Annual Stock Award is a grant to an employee of a fixed number of restricted shares of Microsoft stock to reward impact. The number of shares is calculated by taking the value of the award and dividing it by the closing Microsoft stock price on the last business day of August. The grant date is August 31 of each year. The shares are awarded each year and are generally communicated during rewards discussions.​ These shares then become available to the employee over a period of time referred to as the vesting schedule. A portion of the shares will become available to the employee at each vest date throughout the vesting schedule, subject to the employee being employed on the vest date. 
+
+Awards must be accepted within the time period specified in the award agreement.
+
+The award agreement is available for employees to review and accept on Microsoft’s internal tool, the Total Rewards Portal.
+
+All employees who are eligible to receive rewards through our annual process are also eligible for Annual Stock Awards. Interns and visiting researchers are not eligible for Annual Stock Awards.
+
+Note: The above information is related to Annual Stock Awards, but other types of stock awards, such as on-hire grants, may have different terms and vesting schedule. Please refer to the grant agreement for the details of each award. 
+
+ 
+
+Legal notes
+
+ 
+
+The grants are made by Microsoft Corporation in its sole discretion, not by local subsidiaries and are subject to the terms of the company equity plan. The stock grant does not constitute a term or condition of an employee's employment contract with Microsoft under applicable local laws and Annual Stock Awards do not form part of an employee's salary or benefits of any kind, unless explicitly provided otherwise. Compensation policies may vary in some countries as required by local law.

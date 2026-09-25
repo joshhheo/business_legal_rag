@@ -3,45 +3,57 @@ from sklearn.metrics.pairwise import cosine_similarity
 import os
 from dotenv import load_dotenv
 from google import genai
+import re
 
-model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
-files = ["test_rag/termination.txt", "test_rag/payment.txt"]
+with open("test_rag/microsoft_annual_stock_awards.txt", "r") as f:
+    text = f.read()
+
+# splits at gaps (not line breaks)
+paragraphs = re.split(r"\n\s*\n", text)
 
 all_chunks = []
 
-for file in files:
-    with open(file, "r") as f:
-        text = f.read()
+for paragraph in paragraphs:
+    paragraph = paragraph.strip()
 
-    chunks = text.split(".")
+    if paragraph:
+        all_chunks.append(paragraph)
 
-    for chunk in chunks:
-        chunk = chunk.strip()
-        if chunk:
-            all_chunks.append(chunk)
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
-embeddings = model.encode(all_chunks)
+chunk_embeddings = model.encode(all_chunks)
 
-question = "How can a contract be terminated?"
+question = input()
+
+if not question.strip():
+    print("question is blank")
+    exit()
 
 # encode expects 2D array
 question_embedding = model.encode([question])
 
 # returns 2D list
-similarities = cosine_similarity(question_embedding, embeddings)
+similarities = cosine_similarity(question_embedding, chunk_embeddings)
 
 # arg sort is ascending by default
 # arg sort saves initial index positions of each value
 # index position represents chunk identity
 sorted_similarities = similarities[0].argsort()[::-1]
 
-top_matches = sorted_similarities[:2]
+similarity_floor = 0.5
+
+max_chunks = 3
 
 retrieved_chunks = []
 
-for index in top_matches:
-    retrieved_chunks.append(all_chunks[index])
+for index in sorted_similarities:
+    if similarities[0][index] > similarity_floor:
+        retrieved_chunks.append(all_chunks[index])
+
+if len(retrieved_chunks) > max_chunks:
+    print("question too vague")
+    exit()
 
 load_dotenv()
 
@@ -59,6 +71,8 @@ Context:
 
 Question:
 {question}
+
+Be detailed, direct, and clear.
 """
 
 response = client.models.generate_content(

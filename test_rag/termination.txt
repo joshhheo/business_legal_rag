@@ -1,2 +1,0 @@
-A contract can state how either party can end the agreement.
-Either party may terminate the contract with 30 days notice.
