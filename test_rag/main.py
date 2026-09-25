@@ -43,13 +43,19 @@ sorted_similarities = similarities[0].argsort()[::-1]
 
 similarity_floor = 0.5
 
-max_chunks = 3
+max_chunks = 4
 
 retrieved_chunks = []
 
 for index in sorted_similarities:
+    # test similarity values
+    print(similarities[0][index])
+    print(all_chunks[index])
+    print()
+
     if similarities[0][index] > similarity_floor:
         retrieved_chunks.append(all_chunks[index])
+
 
 if len(retrieved_chunks) > max_chunks:
     print("question too vague")
